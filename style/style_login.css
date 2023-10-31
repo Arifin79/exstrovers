@@ -1,0 +1,134 @@
+.login {
+    background-color: #ffffff;
+  }
+  
+  .login .frame {
+    position: absolute;
+    width: 600px;
+    height: 456px;
+    top: 210px;
+    left: 758px;
+    background-color: #0066ff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .login .text-wrapper {
+    position: absolute;
+    top: 53px;
+    left: 233px;
+    font-family: "Arial-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .overlap-group {
+    width: 436px;
+    top: 140px;
+    left: 82px;
+    position: absolute;
+    height: 55px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: #9b9b9b;
+  }
+  
+  .login .div {
+    position: absolute;
+    top: 16px;
+    left: 25px;
+    font-family: "Arial";
+    font-weight: 700;
+    color: #a0a0a0;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .overlap {
+    width: 436px;
+    top: 244px;
+    left: 82px;
+    position: absolute;
+    height: 55px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: #9b9b9b;
+  }
+  
+  .login .div-wrapper {
+    width: 173px;
+    top: 348px;
+    left: 345px;
+    position: absolute;
+    height: 48px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: #9b9b9b;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .login .text-wrapper-2 {
+    position: absolute;
+    top: 13px;
+    left: 60px;
+    font-family: "Arial-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .group {
+    position: absolute;
+    width: 505px;
+    height: 224px;
+    top: 310px;
+    left: 155px;
+  }
+  
+  .login .text-wrapper-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Arial-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .line {
+    position: absolute;
+    width: 74px;
+    height: 5px;
+    top: 126px;
+    left: 0;
+  }
+  
+  .login .p {
+    position: absolute;
+    width: 501px;
+    top: 188px;
+    left: 0;
+    font-family: "Arial-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
