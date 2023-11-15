@@ -1,5 +1,5 @@
 <?php
-  @include 'assets/config.php';
+  @include '../assets/config.php';
 
   session_start();
 
@@ -13,7 +13,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Sidebar Dashboard Template</title>
-    <link rel="stylesheet" href="style/style_index.css?v2">
+    <link rel="stylesheet" href="../style/style_index_admin.css?v2">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/js/ckeditor.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
@@ -29,10 +33,10 @@
     <!--sidebar start-->
     <div class="sidebar">
       <div class="profile_info">
-        <img src="img/pp.jpeg" class="profile_image" alt="">
+        <img src="../assets/img/pp.jpeg" class="profile_image" alt="">
         <h4>Arifin</h4>
       </div>
-      <a href="index.php?page=tugas"><i class="fa fa-home" style="color: #0066FF;"></i><span>Dashboard</span></a>
+      <a href="index.php?page=register"><i class="fa fa-user-plus" style="color: #0066FF;"></i><span>Create Account</span></a>
       <a href="index.php?page=information"><i class="fa fa-envelope" style="color: #0066FF;"></i><span>Information</span></a>
       <a href="index.php?page=tim"><i class="fa fa-users" style="color: #0066FF;"></i><span>Teams</span></a>
       <a href="index.php?page=profile"><i class="fa fa-user" style="color: #0066FF;"></i><span style="margin-left: 8px;">Profile</span></a>
@@ -46,8 +50,8 @@
             case 'profile':
                 include "page/profile.php";
                 break;
-            case 'tugas':
-                include "page/tugas.php";
+            case 'register':
+                include "page/register.php";
                 break;
             case 'information':
                 include "page/information.php";
@@ -56,12 +60,14 @@
                 include "page/tim.php";
                 break;
             default:
-                include "page/tugas.php";
+                include "page/register.php";
                 break;
             }
         ?>
     </div>
 
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
       $('.nav_btn').click(function(){

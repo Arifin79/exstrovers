@@ -29,7 +29,7 @@
     <!--sidebar start-->
     <div class="sidebar">
       <div class="profile_info">
-        <img src="img/pp.jpeg" class="profile_image" alt="">
+        <img src="assets/img/pp.jpeg" class="profile_image" alt="">
         <h4>Arifin</h4>
       </div>
       <a href="index.php?page=tugas"><i class="fa fa-home" style="color: #0066FF;"></i><span>Dashboard</span></a>
