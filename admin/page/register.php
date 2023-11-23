@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Add Account</p>
-</body>
-</html>
 <?php
 error_reporting(0);
 switch ($_GET['action']) {
@@ -22,7 +11,7 @@ switch ($_GET['action']) {
                 <th>Email</th>
                 <th>No Telpon</th>
                 <th>Profile Image</th>
-                <th><a href="index.php?page=admin&action=add" class="btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i> Add</a></th>
+                <th><a href="index.php?page=register&action=add" class="btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i> Add</a></th>
             </thead>
             <tbody>
                 <?php
@@ -38,9 +27,9 @@ switch ($_GET['action']) {
                         <td><?= $data['no_telp']; ?></td>
                         <td><?= $data['image_profile']; ?></td>
                         <td>
-                            <a href="index.php?page=admin&action=edit&id=<?= $data['username']; ?>" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="index.php?page=admin&action=reset&id=<?= $data['username']; ?>" class="btn btn-sm btn-info"><i class="fa-solid fa-arrow-rotate-right"></i></a>
-                            <a href="index.php?page=admin&action=hapus&id=<?= $data['username']; ?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                            <a href="index.php?page=register&action=edit&id=<?= $data['name']; ?>" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="index.php?page=register&action=reset&id=<?= $data['name']; ?>" class="btn btn-sm btn-info"><i class="fa-solid fa-arrow-rotate-right"></i></a>
+                            <a href="index.php?page=register&action=hapus&id=<?= $data['name']; ?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php $nomor++; ?>
@@ -50,47 +39,86 @@ switch ($_GET['action']) {
     <?php
         break;
     case 'add':
-    ?>
-        <form action="index.php?page=admin&action=save" method="post">
-            <label for="user">Username:</label>
-            <input type="text" name="user" id="user" class="form-control" required>
-            <label for="pass">Password:</label>
-            <input type="password" name="pass" id="pass" class="form-control" required>
-            <label for="nama">Nama Lengkap:</label>
-            <input type="text" name="nama" id="nama" class="form-control" required>
-            <label for="telpon">No Telpon:</label>
-            <input type="text" name="telpon" id="telpon" class="form-control" required>
-            <label for="image">Image Profile:</label>
-            <input type="file" class="form-control" name="gambar_artikel" id="gambar_artikel" required>
-            <label for="nama">User Type:</label>
-            <select class="form-control"  name="user_type">
-                <option value="user">Karyawan</option>
-                <option value="admin">Admin</option>
-            </select>
-            <br>
+        ?>
+        <form class="form-horizontal" role="form" action="information.php" method="POST">
+            <div class="form-group">
+                <label for="nama_lengkap" class="col-sm-1 control-label">Username</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="user" placeholder="Masukan Username" name="user">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nama_lengkap" class="col-sm-1 control-label">Password</label>
+                <div class="col-sm-10">
+                <input type="password" class="form-control" id="pass" placeholder="Masukan Password" name="pass">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nama_lengkap" class="col-sm-1 control-label">Nama</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" name="nama">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nama_lengkap" class="col-sm-1 control-label">No Telpon</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="telpon" placeholder="Masukkan Nomer Telpon" name="telpon">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nama_lengkap" class="col-sm-1 control-label">Image Profile</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" name="gambar_artikel" id="gambar_artikel" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nama_lengkap" class="col-sm-1 control-label">Pengguna</label>
+                <div class="col-sm-10">
+                <select class="form-control"  name="user_type">
+                    <option value="user">Karyawan</option>
+                    <option value="admin">Admin</option>
+                </select>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">SIMPAN</button>
-            <a href="index.php?page=admin" class="btn btn-danger">KEMBALI</a>
+            <a href="index.php?page=register" class="btn btn-danger">KEMBALI</a>
         </form>
-    <?php
+        <?php
         break;
     case 'save':
         if (isset($_POST['user'])) {
             $user = $_POST['user'];
+            $email = $_POST['email'];
             $password = md5($_POST['password']);
-            $nama = $_POST['nama'];
+            $name = $_POST['name'];
             $no_telp = $_POST['no_telp'];
             $image = $_POST['image_profile'];
             $user_type = $_POST['user_type'];
-            $query = mysqli_query($conn, "INSERT INTO user_form (email, password, nama, no_telp, image_profile, user_type) VALUES ('" . $user . "', '" . $password . "', '" . $nama . "', '" . $no_telp . "', '" . $image . "', '" . $user_type . "')");
+            $query = mysqli_query($conn, "INSERT INTO user_form (email, password, nama, no_telp, image_profile, user_type) VALUES ('" . $user . "', '" . $email . "', '" . $password . "', '" . $name . "', '" . $no_telp . "', '" . $image . "', '" . $user_type . "')");
+
+            if(mysqli_num_rows($query) > 0){
+
+                $error[] = 'user already exist!';
+
+            }else{
+
+                if($pass != $cpass){
+                    $error[] = 'password not matched!';
+                }else{
+                    $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
+                    mysqli_query($conn, $insert);
+                    header('location:login_form.php');
+                }
+            }
 
             if ($query) {
                 echo "<script>
-                        document.location='index.php?page=admin';
+                        document.location='admin/index.php?page=register';
                     </script>";
             } else {
                 echo "<script>
                         alert('Gagal');
-                        document.location = 'index.php?page=admin&action=add';
+                        document.location = 'admin/index.php?page=register&action=add';
                     </script>";
             }
         }
@@ -98,7 +126,7 @@ switch ($_GET['action']) {
     case 'edit':
         $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE username = '" . $_GET['id'] . "'");
         $data = mysqli_fetch_assoc($query);
-    ?>
+        ?>
         <form action="index.php?page=admin&action=update" method="post">
             <input type="hidden" name="id" value="<?= $data['username']; ?>">
             <label for="user">Username:</label>
@@ -111,7 +139,7 @@ switch ($_GET['action']) {
             <button type="submit" class="btn btn-primary">UPDATE</button>
             <a href="index.php?page=admin" class="btn btn-danger">KEMBALI</a>
         </form>
-<?php
+        <?php
         break;
     case 'update':
         if (isset($_POST['id'])) {

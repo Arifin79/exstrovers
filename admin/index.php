@@ -36,17 +36,21 @@
         <img src="../assets/img/pp.jpeg" class="profile_image" alt="">
         <h4>Arifin</h4>
       </div>
+      <a href="index.php?page=dashboard"><i class="fa fa-home" style="color: #0066FF;"></i><span>Dashboard</span></a>
+      <a href="index.php?page=tugas"><i class="fa fa-bars" style="color: #0066FF;"></i><span>Tugas</span></a>
       <a href="index.php?page=register"><i class="fa fa-user-plus" style="color: #0066FF;"></i><span>Create Account</span></a>
       <a href="index.php?page=information"><i class="fa fa-envelope" style="color: #0066FF;"></i><span>Information</span></a>
-      <a href="index.php?page=tim"><i class="fa fa-users" style="color: #0066FF;"></i><span>Teams</span></a>
       <a href="index.php?page=profile"><i class="fa fa-user" style="color: #0066FF;"></i><span style="margin-left: 8px;">Profile</span></a>
-      <a href="login.php" style="margin-top: 125%;"><i class="fa fa-arrow-left" style="color: #FF0000;"></i><span style="color: #FF0000;">Logout</span></a>
+      <a href="logout.php" style="margin-top: 125%;"><i class="fa fa-arrow-left" style="color: #FF0000;"></i><span style="color: #FF0000;">Logout</span></a>
     </div>
     <!--sidebar end-->
 
     <div class="content">
         <?php
             switch ($_GET['page']) {
+            case 'dashboard':
+                include "page/dashboard.php";
+                break;
             case 'profile':
                 include "page/profile.php";
                 break;
@@ -56,11 +60,8 @@
             case 'information':
                 include "page/information.php";
                 break;
-            case 'tim':
-                include "page/tim.php";
-                break;
             default:
-                include "page/register.php";
+                include "page/dashboard.php";
                 break;
             }
         ?>
