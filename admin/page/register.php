@@ -40,7 +40,7 @@ switch ($_GET['action']) {
         break;
     case 'add':
         ?>
-        <form class="form-horizontal" role="form" action="information.php" method="POST">
+        <form class="form-horizontal" role="form" action="register.php" method="POST">
             <div class="form-group">
                 <label for="nama_lengkap" class="col-sm-1 control-label">Username</label>
                 <div class="col-sm-10">
@@ -89,42 +89,36 @@ switch ($_GET['action']) {
         if (isset($_POST['user'])) {
             $user = $_POST['user'];
             $email = $_POST['email'];
-            $password = md5($_POST['password']);
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Use password_hash() for secure hashing
             $name = $_POST['name'];
             $no_telp = $_POST['no_telp'];
             $image = $_POST['image_profile'];
             $user_type = $_POST['user_type'];
-            $query = mysqli_query($conn, "INSERT INTO user_form (email, password, nama, no_telp, image_profile, user_type) VALUES ('" . $user . "', '" . $email . "', '" . $password . "', '" . $name . "', '" . $no_telp . "', '" . $image . "', '" . $user_type . "')");
-
-            if(mysqli_num_rows($query) > 0){
-
-                $error[] = 'user already exist!';
-
-            }else{
-
-                if($pass != $cpass){
-                    $error[] = 'password not matched!';
-                }else{
-                    $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
-                    mysqli_query($conn, $insert);
-                    header('location:login_form.php');
-                }
-            }
-
-            if ($query) {
-                echo "<script>
-                        document.location='admin/index.php?page=register';
-                    </script>";
+        
+            // Check for existing user
+            $check_query = mysqli_query($conn, "SELECT * FROM user_form WHERE email = '$email'");
+            if (mysqli_num_rows($check_query) > 0) {
+                $error[] = 'User already exists!';
             } else {
-                echo "<script>
-                        alert('Gagal');
-                        document.location = 'admin/index.php?page=register&action=add';
-                    </script>";
+                // Insert user details
+                $query = mysqli_query($conn, "INSERT INTO user_form (email, password, nama, no_telp, image_profile, user_type) VALUES ('$email', '$password', '$name', '$no_telp', '$image', '$user_type')");
+        
+                if ($query) {
+                    echo "<script>
+                            alert('Registration successful!');
+                            document.location='admin/index.php?page=register';
+                        </script>";
+                } else {
+                    echo "<script>
+                            alert('Failed to register!');
+                            document.location = 'admin/index.php?page=register&action=add';
+                        </script>";
+                }
             }
         }
         break;
     case 'edit':
-        $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE username = '" . $_GET['id'] . "'");
+        $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE information = '" . $_GET['id'] . "'");
         $data = mysqli_fetch_assoc($query);
         ?>
         <form action="index.php?page=admin&action=update" method="post">
